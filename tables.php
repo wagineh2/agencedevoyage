@@ -11,9 +11,9 @@
         <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <?PHP 
-        include "../core/sponsorsC.php";
-        $sponsorsCvar =new sponsorsC();
-        $listeSponsors=$sponsorsCvar->afficherSponsors();
+        include "../../core/partenaireC.php";
+        $partenaireCvar =new partenaireC();
+        $listePartenairee=$partenaireCvar->afficherPartenairee();
         ?>
     </head>
     <body class="sb-nav-fixed">
@@ -49,19 +49,19 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gestions des offres
+                                Gestions des Partenaires
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="../../offres/offres/views/tables.php">Affichage des offres</a><a class="nav-link" style="font-size: 13px;" href="../../offres/offres/views/index.html">Ajouts des offres</a></nav>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="tables.php">Afficahge des Partenaires</a><a class="nav-link" style="font-size: 13px;" href="index.html">Ajouts des Partenaires</a></nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Gestions des sponsors
+                                Gestions des Contrats
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>
                             <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="tables.php">Affichage des sponsors</a><a class="nav-link" style="font-size: 13px;" href="index.html">Ajouts des sponsors</a></nav>
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" style="font-size: 13px;" href="tables2.php">Affichage des contrats</a><a class="nav-link" style="font-size: 13px;" href="index2.html">Ajouts des contrats</a></nav>
                             </div>
                             
                             
@@ -106,55 +106,56 @@
                                     <table class="table table-bordered"  width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>ids</th>
-                                                <td>nomsponsor</td>
-                                                <td>telephone</td>
+                                                <th>id</th>
+                                                <td>nom</td>
+                                                <td>adresse</td>
+                                                <td>numero</td>
                                                 <td>supprimer</td>
                                                 <td>modifier</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?PHP
-$sponsorsCvar =new sponsorsC();
+$partenaireCvar =new partenaireC();
 if (isset($_GET['but8'])) 
 {   
  if (empty($_GET['idd'])){
-    $sponsorsCvar =new sponsorsC();
-    $listeSponsorss=$sponsorsCvar->afficherSponsors();
+    $partenaireCvar =new partenaireC();
+    $listePartenairee=$partenaireCvar->afficherPartenairee();
  }
  else {
  $idd= $_GET['idd'];
- $sponsorsCvar2 =new sponsorsC();
-$listeSponsors=$sponsorsCvar2->afficherSponsors2($idd);
+ $partenaireCvar2 =new partenaireC();
+$listePartenairee=$partenaireCvar2->afficherPartenairee($idd);
  }
 }
 else 
-$listeSponsors=$sponsorsCvar->afficherSponsors();
+$listePartenairee=$partenaireCvar->afficherPartenairee();
 ?>
-
 <?PHP
-foreach($listeSponsors as $row){
+foreach($listePartenairee as $row){
     ?>
     <tr>
-    <td><?PHP echo $row['ids']; ?></td>
-    <td><?PHP echo $row['nomsponsor']; ?></td>
-    <td><?PHP echo $row['telephone']; ?></td>
-    <td><form method="POST" action="supprimerSponsors.php">
+    <td><?PHP echo $row['id']; ?></td>
+    <td><?PHP echo $row['nom']; ?></td>
+    <td><?PHP echo $row['adresse']; ?></td>
+    <td><?PHP echo $row['numero']; ?></td>
+    <td><form method="POST" action="supprimerPartenaire.php">
     <input type="submit" name="supprimer" value="supprimer" class="btn btn-danger">
-    <input type="hidden" value="<?PHP echo $row['ids']; ?>" name="ids">
+    <input type="hidden" value="<?PHP echo $row['id']; ?>" name="id">
     
     </form>
     </td>
     
     
     
-    <td><a href="modifierSponsors.php?ids=<?PHP echo $row['ids']; ?>" class="btn btn-warning" style="color: #FFF;">
+    <td><a href="modifierPartenaire.php?id=<?PHP echo $row['id']; ?>" class="btn btn-warning" style="color:#FFF;">
     Modifier</a></td>
     </tr>
     
     <?PHP
 }
-?>     
+?>   
                                         </tbody>
                                     </table>
                                 </div>
