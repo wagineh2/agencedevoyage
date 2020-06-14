@@ -1,6 +1,6 @@
 <head>
 <Meta charset="utf-8" http-equiv="Content-Type" content="text/html" >
-        <TITLE>crud Partenaire</TITLE> 
+        <TITLE>crud partenaire</TITLE> 
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
    <link rel="stylesheet" type= "text/css" href= "publicity-style.css"> 
@@ -11,7 +11,7 @@
 
 
 <?PHP 
-include "../core/partenaireC.php";
+include "../../../partrnaire/core/partenaireC.php";
 $partenaireCvar =new partenaireC();
 $listePartenairee=$partenaireCvar->afficherPartenairee();
 ?>
@@ -21,7 +21,7 @@ $listePartenairee=$partenaireCvar->afficherPartenairee();
 <table border="3">
 <tr>
 <td>id</td>
-<td>nom </td>
+<td>nom</td>
 <td>adresse</td>
 <td>numero</td>
 <td>supprimer</td>

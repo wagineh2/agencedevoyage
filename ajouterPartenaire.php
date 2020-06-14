@@ -15,7 +15,7 @@ if (isset($_POST['id']) and isset($_POST['nom']) and isset($_POST['adresse']) an
     $partenaireCvar= new partenaireC() ;
     $partenaireCvar->ajouterPartenaire($partenairevar);
     Var_dump($partenairevar);
-    header('Location: tables.php');
+    header('Location: contact.php');
 }
     else{
         echo "verifier les champs";
